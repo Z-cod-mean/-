@@ -1,0 +1,43 @@
+单一职责（Single Responsibility Principle)
+
+解析:单一原则就是要求一个类只能承担一种功能。
+The single responsibility principle requires that a class should only take on one function.
+
+为什么？因为降低耦合性                -->   什么是"耦合性"?            |
+Why? Because it reduces coupling.         What is “coupling”?       |
+
+<降低耦合性指的是：当一个类只做一件事时，出问题也容易定位和修复>
+Reducing coupling means that when a class only does one thing, it’s easier to locate and fix problems if something goes wrong.
+
+<增强可读性和可维护性: 职责单一的类结构清晰,使得后期修改和功能扩展都变得更简单> 
+Enhancing readability and maintainability: a class with a single responsibility has a clear structure, which makes later modifications and feature extensions much simpler.
+
+
+<复用性:拆分不同的职责后，每个类都可以在其它场景中重复使用>
+Reusability: after splitting different responsibilities, each class can be reused in other scenarios.
+
+举一个复用性的极端例子:
+  Give an extreme example of reusability:
+  整个程序只有一个Main，并在其实现全部功能，那么其中的代码必然毫无复用性可言，我们拆分的越细越容易无副作用的将相似的需求使用同一套代码解决。
+  If the entire program only has one `Main` and implements all functions inside it, then the code will inevitably have no reusability at all. 
+  The more we split things up, the easier it becomes to use the same set of code to handle similar requirements without side effects.
+
+但是！
+BUT!
+    <组合模式>
+    class Player
+  {
+    void on_update(float delta){} //更新
+    void on_render(){} //渲染
+
+    //... ...
+  };
+这个例子显示了一个类可以有俩套不同的功能，这不是违反了单一职责吗？
+This example shows that a class can have two different functions — doesn’t that violate the single responsibility principle?
+严格来说渲染功能确实可以被拆分到外面单独创建，因为一张图片纹理或是一套动画本质是数据，而不是灵活多变的逻辑。
+Strictly speaking, the rendering function can indeed be separated out and created independently, 
+because an image texture or a set of animations is essentially data, not flexible and variable logic.
+但是我们首先需要理解的是程序跟游戏是灵活多变的，如果只使用传统的面向对象思想遵循单一职责来制作所有的对象，那么代码会非常繁重而且灵活性极差。
+  But what we first need to understand is that programs and games are flexible and ever-changing. 
+  If we only use traditional object-oriented thinking and strictly follow the single responsibility principle to create all objects, 
+  the code will become very heavy and lack flexibility.
