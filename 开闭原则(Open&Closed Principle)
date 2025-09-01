@@ -1,1 +1,58 @@
+2. 开闭原则(Open&Closed Principle)
 
+解析:对扩展开放，对修改封闭
+Explanation: Open for extension, closed for modification.
+当我们需要改变已有的代码功能或添加新的功能模块的时候，我们应该尽量通过扩展编写新的代码，而非修改已有的代码.
+When we need to change existing functionality or add new modules, we should try to extend by writing new code rather than modifying the existing code.
+
+==============================================================================================================================================================
+
+为什么?
+Why?
+讲一个程序员之间的笑话："如果代码能够正常运行，那就不要去动它。" lol:)
+Here’s a joke among programmers: “If the code runs fine, don’t touch it.” lol :)
+再完善的系统也不排除会有牵一发动全身引发雪崩效应的隐藏BUG.
+Even the most well-designed system may still have hidden bugs where pulling one thread can trigger a chain reaction and cause an avalanche effect.
+尤其在一些大型的团队项目中有些模块代码已经是流传了好几代的上古代码,当初的设计师的想法与思路已经不可考究，所以去触碰这些未知的代码就极具风险。
+Especially in some large team projects, certain modules contain ancient code that has been passed down through several generations. 
+The original designer’s ideas and reasoning are no longer traceable, so touching this unknown code is extremely risky.
+
+所以开闭原则要求我们在设计系统的时候就预留好后续功能扩展的接口，而非在功能迭代时侵入式的修改已有的封装。
+So the open–closed principle requires us to reserve interfaces for future feature extensions when designing the system, 
+rather than making intrusive modifications to existing encapsulations during feature iterations
+（意思是——当你以后要加新功能时，最好是通过“新增一个类/方法/模块”去扩展，而不是去改动已经写好的、跑得很稳的代码）
+（This means that when you want to add new features in the future, it’s best to do so by adding a new class/method/module for extension, 
+  rather than modifying the existing, stable code.）
+
+ 另外在游戏开发领域，面对灵活多变的游戏世界应该提前设计好扩展性强的系统，以应对未来可能的业务变化跟需求变化。
+ In addition, in the field of game development, when dealing with a flexible and ever-changing game world, 
+ we should design highly extensible systems in advance to cope with possible future business and requirement changes.
+
+==============================================================================================================================================================
+
+那么开闭原则怎么做呢？最简单的方式就是子类重写父类的方法。就是父类提供接口子类实现
+So how do we apply the open–closed principle? 
+The simplest way is by having subclasses override the methods of the parent class — the parent class provides the interface, and the subclass implements it.
+
+class Skill {
+public:
+    virtual ~Skill() = default;
+    virtual void cast() = 0; // 固定接口
+};
+
+// 新技能只需要写子类
+class Fireball : public Skill {
+public:
+    void cast() override {
+        // 火球术的实现
+    }
+};
+
+class Heal : public Skill {
+public:
+    void cast() override {
+        // 治疗术的实现
+    }
+};
+以后要加“雷电术”，不用改 Skill 也不用改 Fireball/Heal，只要写一个 Thunder 子类。
+这就是最直接体现 开闭原则 的方式。
