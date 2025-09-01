@@ -1,0 +1,117 @@
+3.里氏替换原则(Liskov Substitution Principle)
+
+解析:一句话概括的话,那就是要求所有父类出现的地方，都可以使用子类对象来替换，而不会改变程序的正确性，说更仔细点就是面向对象继承思想所要求的子类是父类的更具象的描述,而遵循与父类相同的功能。
+In one sentence, it means that wherever a parent class appears, a subclass object should be able to replace it without altering the correctness of the program. 
+More specifically, in object-oriented inheritance, a subclass should be a more concrete description of the parent class while adhering to the same functionality.
+
+举一个例子：
+Give an example:
+
+class Skill {
+public:
+    virtual void cast() = 0;  // 纯虚函数，留给子类实现
+};
+
+class Fireball : public Skill {
+public:
+    void cast() override {
+        std::cout << "Cast Fireball!\n";
+    }
+};
+
+class Heal : public Skill {
+public:
+    void cast() override {
+        std::cout << "Cast Heal!\n";
+    }
+};
+
+int main() {
+    Skill* skill1 = new Fireball(); // 基类指针指向子类对象
+    Skill* skill2 = new Heal();
+
+    skill1->cast(); // 输出 "Cast Fireball!"
+    skill2->cast(); // 输出 "Cast Heal!"
+
+    delete skill1;
+    delete skill2;
+}
+
+基类对象指针Skill* skill1 & Skill* skill2 可以指向任何继承skill基类的子类。
+
+===========================================================================================================================================================================
+
+为什么？
+Why?
+
+因为保证继承体系的正确性:如果子类不完全遵循父类契约，调用者可能会遇到意想不到的问题。
+Because ensuring the correctness of the inheritance system is important: 
+if a subclass does not fully adhere to the parent class’s contract, the caller may encounter unexpected problems.
+确保多态机制能够正常发挥作用，当我们重写父类接口功能时其实就对接口更具体的描述，应该在父类接口的基础上扩展或细化更多功能。
+Ensure that the polymorphism mechanism can function properly. When we override a parent class’s interface, we are actually providing a more specific description of that interface. 
+We should extend or refine more functionality based on the parent class’s interface.
+
+===========================================================================================================================================================================
+
+遵循的规则:
+Rules to follow:
+
+1.子类方法的参数类型必须与其父类的参数类型相匹配或更加抽象。
+The parameter types of a subclass’s methods must match those of its parent class or be more abstract.
+2.子类方法的返回值类型必须与父类方法的返回值类型或是其子类相匹配。
+The return type of a subclass’s method must match the return type of the parent class’s method or be a subclass of it.
+3.子类中的方法不应该抛出基础方法预期之外的异常类型。
+Methods in a subclass should not throw exception types beyond what the base method is expected to handle.
+4.子类不应该加强其前置条件。
+A subclass should not strengthen its preconditions.
+5.子类不能削弱其后置条件。
+A subclass must not weaken its postconditions.
+6.父类的不变量必须保留
+The invariants of the parent class must be preserved.
+7.子类不能修改父类中的私有成员变量的值。
+A subclass must not modify the values of the parent class’s private member variables.
+
+参数类型不能乱改
+子类方法的参数要么和父类一样，要么更宽泛（能接受更多情况），不能更挑剔。
+👉 好比父类说“我能吃所有水果”，子类不能说“我只吃苹果”。
+
+返回值可以更具体
+子类方法返回的东西可以和父类一样，或者比父类更具体。
+👉 父类承诺“我会给你一个动物”，子类可以实际给你“一只猫”。
+
+异常范围不能乱扩
+父类说“我最多会抛这种错误”，子类不能额外抛更多没提过的错误。
+👉 父类说“最多会迟到”，子类不能说“可能旷课”。
+
+条件不能更苛刻
+子类方法不能要求比父类更严格的前提条件。
+👉 父类说“任何人都能坐公交”，子类不能说“只有学生证才能坐”。
+
+承诺不能缩水
+子类方法的结果不能比父类承诺的更差。
+👉 父类说“我保证送到家门口”，子类不能变成“我只能送到小区门口”。
+
+父类的规则必须遵守
+父类设定的不变条件，子类必须继续保持。
+👉 父类规定“账号余额不能为负”，子类不能允许透支。
+
+别偷偷改父类的底层数据
+父类自己的私有变量是它的内部规则，子类不能随便动。
+👉 父类说“我的存钱罐只有我能开”，子类不能偷偷撬开里面换零钱。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
