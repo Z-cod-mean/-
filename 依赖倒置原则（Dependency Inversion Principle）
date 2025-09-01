@@ -1,0 +1,18 @@
+5.依赖倒置原则（Dependency Inversion Principle）
+
+
+解析：规定了高层次的类不应该依赖低层次的类，而是将二者的依赖转嫁到抽象接口之上。
+Explanation: It states that high-level classes should not depend on low-level classes; instead, both should rely on abstract interfaces.
+
+那么什么是高层次什么是低层次呢？
+So what is considered high-level and what is considered low-level?
+
+这里讲的不是类，而是软件层面的上层业务和底层架构：
+This refers not to classes, but to upper-level business logic and lower-level architecture in the software layers：
+低层次的类列如：文件IO 网络通信 或是数据库的连接等等。
+Low-level classes include: file I/O, network communication, or database connections, etc.
+
+高层次的类则是描述我们的软件功能，业务逻辑如:
+High-level classes, on the other hand, describe our software’s functionality and business logic, such as:
+按钮响应，界面显示等等
+Button responses, interface displays, and so on.
