@@ -1,0 +1,48 @@
+4. 接口隔离原则(Interface Segregation Principle)
+
+解析:核心在于"拆",与其搞一个大而全的通用接口,不如把这个接口拆分设计成更小的关注点更精确的细分接口。
+Explanation: The core idea is “splitting.” Instead of creating one large and general-purpose interface, 
+it’s better to break it down into smaller, more focused, and precise specialized interfaces.
+
+比如在第一个原则提到的例子就可以拆分为更新和渲染俩个接口逻辑来实现:
+For example, in the case mentioned in the first principle, it can be split into two interface logics — update and render — to implement.
+
+//专注于更新逻辑
+class IUdateble
+{
+public:
+    virtual void update() = 0;
+};
+
+//专注于渲染逻辑
+class IRenderable
+{
+public:
+    virtual coid render() = 0;
+};
+
+class Player : public IUpdateable, public IRenderable
+{
+public:
+    void update() override
+    {
+         //更新玩家状态
+         cout << "Player updating..." << endl;
+    }
+    void render() override
+    {
+         //渲染玩家
+         cout << "player render..." << endl;
+    }
+};
+
+class Background : public IRenderable
+{
+public:
+    void render() override
+    {
+         //渲染背景图像
+         cout << "Background rendering..." << endl;
+    }
+像玩家这样同时需要俩个接口内容的就可以放在一起，而背景只需要渲染。
+For something like a player, which requires both interfaces, they can be combined together, while the background only needs rendering.
