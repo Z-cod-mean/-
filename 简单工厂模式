@@ -1,0 +1,25 @@
+创建完所有的父类子类之后将所有具体实现的子类全部放到一个工厂里管理
+
+
+
+逻辑：
+
+class 工厂
+{
+  public:
+	物品父类* 变量名最好create(传入物品枚举名, 位置信息)
+	{
+		switch (枚举名)
+		{
+    //
+		case _命名空间集合中的::枚举类里的::物品名:
+			return new 创建物品(物品位置);
+			break;
+		default:
+			return nullptr;
+			break;
+		}
+	}
+
+}；
+  
