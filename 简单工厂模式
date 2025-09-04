@@ -1,7 +1,5 @@
 创建完所有的父类子类之后将所有具体实现的子类全部放到一个工厂里管理
 
-
-
 逻辑：
 
 class 工厂
@@ -22,4 +20,23 @@ class 工厂
 	}
 
 }；
-  
+==================================================================
+//然后把工厂集合到这里并在cpp中调用这个工厂方法
+class FactoryMethodPattern : public Example
+{
+public:
+	FactoryMethodPattern(SDL_Renderer* renderer);
+	~FactoryMethodPattern();
+
+	void on_update(float delta) override;
+	void on_render(SDL_Renderer* renderer) override;
+
+private:
+    //画布，还没创建
+	SDL_Texture* texture_target = nullptr;
+    //最重要的是这一步创建obj清单然后往里面加物品
+	std::vector<_FactoryMethodPattern::GameObject*> game_obj_list;
+
+};
+
+最后在另一个cpp中实现上面功能
