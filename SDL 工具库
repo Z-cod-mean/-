@@ -1,0 +1,46 @@
+父类
+渲染静态贴图到屏幕里
+void on_update(float delta) override {}
+void on_render(SDL_Renderer* renderer) override
+{
+（系统自带）SDL_FRect 变量名 = { position.x,position.y,大小,大小 };
+（系统自带）SDL_RenderCopyF(renderer, 要加载的图片变量名, nullptr, &引用变量信息);
+
+（系统自带）SDL_Texture* 要加载的图片变量名 = nullptr;
+};
+
+
+===============================================================
+父类
+渲染动态贴图到屏幕里
+
+void on_update(float delta) override
+{
+	使用动画器中的更新器
+	使用动画器种的位置信息
+}
+
+void on_render(SDL_Renderer* renderer) override
+{
+	使用动画器中的渲染器
+}
+
+===============================================================
+子类
+具体实现渲染静态贴图到屏幕里
+物品名(const Vector2& _position) : 父类(_position)
+{
+	要加载的图片变量名 = ResourcesManager::instance()->find_texture("BlueSword");
+}
+
+================================================================
+
+子类
+具体实现渲染动态图到屏幕里
+物品名(const Vector2& _position) : 父类(_position)
+{
+	图片集里的加载器("图片名称%d", 一共几张);
+	使用动画器中的加载帧丢给动画器处理（获取要处理的图片集）
+	然后使用动画器中的循环器循环动画（true）
+	最后设置动画帧的刷新速度（速度f）
+}
