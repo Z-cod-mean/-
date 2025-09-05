@@ -1,0 +1,48 @@
+#include "1.factory_method.h" //加载相关头文件
+
+#include <imgui.h> //界面
+
+使用工厂命名空间
+
+
+FactoryMethodPattern::FactoryMethodPattern(SDL_Renderer* renderer)
+{
+	将目标工厂换一个变量储存
+  用push将想要创建的目标加入到list里（位置信息x，y）
+  
+	game_obj_list.push_back(sword_factory.create(Attribute::Ice, { 200, 100 }));
+	
+  //创建一个画布
+	texture_target = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_TARGET, 720, 720);
+}
+
+
+//释放资源
+FactoryMethodPattern::~FactoryMethodPattern()
+{
+  //在创建一个GameObject的临时储存变量遍历现有list并删除全部。
+
+  //删除画布
+}
+
+void FactoryMethodPattern::on_update(float delta)
+{
+  //创建一个临时的GameObject储存变量遍历现有list并将更新信息传入给GameObject
+
+  //将画布填充到剩下的区域内
+	ImGui::Image(texture_target, ImGui::GetContentRegionAvail());
+}
+
+void FactoryMethodPattern::on_render(SDL_Renderer* renderer)
+{
+// 1) 把渲染目标切到 texture_target（离屏画布）
+// 2) 设定清屏颜色 = 深灰 (R,G,B,A)
+// 3) 用该颜色清空整张画布
+
+
+ //创建一个临时的GameObject储存变量遍历现有list并将渲染信息传入给GameObject
+
+ //窗口的后备缓冲区 防止屏幕看不到为黑
+}
+
+为什么创建一个临时变量？因为list只是容器不能直接使用里面的方法所以先创建一个GameObject的对象，让其遍历list里的全部元素并进行调用
