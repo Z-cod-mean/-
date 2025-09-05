@@ -44,3 +44,41 @@ void on_render(SDL_Renderer* renderer) override
 	然后使用动画器中的循环器循环动画（true）
 	最后设置动画帧的刷新速度（速度f）
 }
+
+===================================================================
+ //创建一个画布
+texture_target = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_TARGET, 720, 720);
+//删除画布释放资源
+SDL_DestroyTexture(texture_target);
+
+SDL_SetRenderTarget(renderer, texture_target);      // 1) 把渲染目标切到 texture_target（离屏画布）
+SDL_SetRenderDrawColor(renderer, 15, 15, 15, 255); // 2) 设定清屏颜色 = 深灰 (R,G,B,A)
+SDL_RenderClear(renderer);                          // 3) 用该颜色清空整张画布
+
+窗口的后备缓冲区 防止屏幕看不到为黑
+SDL_SetRenderTarget(renderer, nullptr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
