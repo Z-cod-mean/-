@@ -1,0 +1,114 @@
+#ifndef _ABSTRACT_FACTORY_H_
+#define _ABSTRACT_FACTORY_H_
+
+#include "example.h"
+#include "animation.h"
+
+//俩个维度的史莱姆
+
+namespace _AbstractFactoryPattern
+{
+	枚举史莱姆的大小大小
+	枚举史莱姆的属性
+
+	class Size定义（基类）
+	{
+	//设置获取size的方法接口
+
+	};
+
+	class Attribute的定义（基类）
+	{
+	//设置获取Attribute的方法接口
+
+	};
+
+  //开始实现获取小size的实现方法
+	class SmallSizeDef
+
+ //开始实现获取中size的实现方法
+	class MediumSizeDef 
+
+//开始实现获取大size的实现方法
+	class LargeSizeDef 
+
+ //开始实现获取冰属性的获取方法
+	class IceAttributeDef 
+
+ //开始实现获取草属性的获取方法
+	class GrassAttributeDef 
+
+ //开始实现获取火属性的获取方法
+	class FireAttributeDef
+
+  //将所有维度集合设置史莱姆工厂的size和Attribute接口提供给后续工厂使用（工厂基类）。
+	class SlimeDefFactory（）（小贴士，如何访问以上所有信息呢？一个“大类”自己创建的）
+
+ //开始实现具体小号冰史莱姆get方法
+	class SmallIceSlimeDefFactory 
+
+  //开始实现具体中号冰史莱姆get方法
+	class MediumIceSlimeDefFactory 
+
+   //开始实现具体大号冰史莱姆get方法
+	class LargeIceSlimeDefFactory : public SlimeDefFactory
+
+  //开始实现具体小号草史莱姆get方法
+	class SmallGrassSlimeDefFactory : public SlimeDefFactory
+
+  //开始实现具体中号草史莱姆get方法
+	class MediumGrassSlimeDefFactory : public SlimeDefFactory
+
+  //开始实现具体大号草史莱姆get方法
+	class LargeGrassSlimeDefFactory : public SlimeDefFactory
+
+  //开始实现具体小号火史莱姆get方法
+	class SmallFireSlimeDefFactory : public SlimeDefFactory
+
+ //开始实现具体中号火史莱姆get方法
+	class MediumFireSlimeDefFactory : public SlimeDefFactory
+
+  //开始实现具体大号火史莱姆get方法
+	class LargeFireSlimeDefFactory : public SlimeDefFactory
+
+  //创建史莱姆类并将以上工厂集合到里面，传入以上工厂跟位置信息
+  //在cpp中具体实现
+	class Slime
+	{
+	public:
+    //更新信息
+		void on_update(float delta)
+		{
+			//从动画器拉出更新器使用
+			//从动画器拉出位置信息使用
+		}
+
+		void on_render(SDL_Renderer* renderer)
+		{
+			//从动画中拿出渲染器使用
+		}
+
+	private:
+	  传入帖图集信息
+    位置信息
+    动画信息
+
+	};
+}
+//这个命名空间的接口在cpp中实现
+class AbstractFactoryPattern : public Example
+{
+public:
+	AbstractFactoryPattern(SDL_Renderer* renderer);
+	~AbstractFactoryPattern();
+
+	void on_update(float delta) override;
+	void on_render(SDL_Renderer* renderer) override;
+
+private:
+	设置背景图为空
+	将史莱姆大类设置为Vector容器（可以看作像是工厂模式的gameobj一样，因为其中储存的更新渲染信息在cpp中具体实现）
+
+};
+
+#endif // !_ABSTRACT_FACTORY_H_
