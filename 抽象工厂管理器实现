@@ -1,0 +1,72 @@
+#include "2.abstract_factory.h"
+
+#include <imgui.h>
+
+using namespace _AbstractFactoryPattern;
+
+//创建一个局部的储存三个大小三种属性史莱姆的图集
+std::vector<std::vector> atlas_path_template_map =
+
+//实例史莱姆中的构造函数并传入工厂跟位置信息
+Slime::Slime(SlimeDefFactory* factory, const Vector2& position)
+{
+	注意位置信息
+
+  //定义一个（什么类型）变量用来储存大小图集信息（注意不是具体实现已经定义了的绑定信息）
+	
+  //定义一个（什么类型）变量用来储存属性图集信息（注意不是具体实现已经定义了的绑定信息）
+	
+  //使用图集加载器加载选中图集跟工厂模式一样
+
+  //动画器加帧
+
+  //动画器循环器
+
+  //帧刷新器
+	
+}
+
+//释放资源
+Slime::~Slime() = default;
+
+//实现命名空间接口
+AbstractFactoryPattern::AbstractFactoryPattern(SDL_Renderer* renderer)
+{
+ //将所有已经实现了的具体工厂集合并创建新的指针
+  
+
+//老样子将所有或是你想的史莱姆全部写下渲染位置信息并传进包含了所有史莱姆位置跟渲染信息的数组内
+
+//创建背景图
+}
+
+//把所有史莱姆结束时都释放掉（你知道怎么做，不能直接删哦！！指针！！）
+AbstractFactoryPattern::~AbstractFactoryPattern()
+{
+  //删除背景图
+  //删除所有屏幕上的史莱姆
+
+}
+
+//实现接口的更新系统，在接口函数里实现史莱姆更新
+void AbstractFactoryPattern::on_update(float delta)
+{
+  
+	//老办法（新指针）
+  //ImGui::Image(texture_target, {400, 400}); → 在 ImGui 里开一个 400×400 的小窗口，显示“游戏画面预览 （例子）
+	ImGui::Image(texture_target, ImGui::GetContentRegionAvail());
+}
+//实现接口的渲染系统，在接口函数里实现史莱姆渲染
+void AbstractFactoryPattern::on_render(SDL_Renderer* renderer)
+{
+  //渲染背景
+	
+  //渲染背景颜色
+	
+  //清楚每一帧的画布
+	
+ 
+	//老办法（新指针）
+
+	//默认窗口后缓冲区
+}
