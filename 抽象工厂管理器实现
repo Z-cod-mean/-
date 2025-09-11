@@ -10,7 +10,7 @@ std::vector<std::vector> atlas_path_template_map =
 //实例史莱姆中的构造函数并传入工厂跟位置信息
 Slime::Slime(SlimeDefFactory* factory, const Vector2& position)
 {
-	注意位置信息
+	//将外部位置参数设置给类中的位置
 
   //定义一个（什么类型）变量用来储存大小图集信息（注意不是具体实现已经定义了的绑定信息）
 	
