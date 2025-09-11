@@ -23,7 +23,7 @@ namespace _AbstractFactoryPattern
 
 	};
 
-  //开始实现获取小size的实现方法
+  //开始实现获取小size的实现方法 : public SizeDef
 	class SmallSizeDef
 
  //开始实现获取中size的实现方法
