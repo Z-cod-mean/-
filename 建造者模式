@@ -6,157 +6,139 @@
 
 namespace _BuilderPattern
 {
+
+    //建造一个鸡的类（要实现的类）
 	class Chicken
 	{
 	public:
 		Chicken()
 		{
-			animation_weapon.set_loop(true);
-			animation_body.set_loop(true);
-			animation_hat.set_loop(true);
-
-			animation_weapon.set_interval(0.1f);
-			animation_body.set_interval(0.1f);
-			animation_hat.set_interval(0.1f);
-
-			Vector2 position = { 166, 148 };
-			animation_weapon.set_position(position);
-			animation_body.set_position(position);
-			animation_hat.set_position(position);
+            //在构造函数中设置/接收三个部分的动画循环，动画帧刷新,位置信息
+			//请继续建设
 		}
 
 		~Chicken() = default;
 
+        //把武器身体头三个部位的图集传给动画器的加帧
 		void set_weapon(Atlas* atlas)
 		{
-			animation_weapon.add_frame(atlas);
+            //请继续建设
 		}
 
 		void set_body(Atlas* atlas)
 		{
-			animation_body.add_frame(atlas);
+			//请继续建设
 		}
 
 		void set_hat(Atlas* atlas)
 		{
-			animation_hat.add_frame(atlas);
+			//请继续建设
 		}
 
 		void on_update(float delta)
 		{
-			animation_weapon.on_update(delta);
-			animation_body.on_update(delta);
-			animation_hat.on_update(delta);
+			//请继续建设
 		}
 
 		void on_render(SDL_Renderer* renderer)
 		{
-			animation_weapon.on_render(renderer);
-			animation_body.on_render(renderer);
-			animation_hat.on_render(renderer);
+			//请继续建设
 		}
 
 	private:
+
+        //把动画器分别分配给三个部位
 		Animation animation_weapon;
 		Animation animation_body;
 		Animation animation_hat;
 
 	};
 
+    //建造器基类类
 	class Builder
 	{
 	public:
-		virtual void init_weapon() = 0;
-		virtual void init_body() = 0;
-		virtual void init_hat() = 0;
-		virtual Chicken* build() = 0;
+        //制定三个部位的接口默认=0/将鸡类变为抽象类接口让后续类完成
+
+		//请继续建设
 
 	protected:
+        //供子类使用的三个部位的图集
 		Atlas atlas_weapon;
 		Atlas atlas_body;
 		Atlas atlas_hat;
 
 	};
 
+    //预设的伊丽莎白鸡，继承于建造器
 	class ElizabethChickenBuilder : public Builder
 	{
 	public:
+        //使用atlas里的加载器完成伊丽莎白鸡
+        //武器为叉子,白色的鸡,跟皇冠（加上清除上一个模型的功能）
 		void init_weapon() override
 		{
-			atlas_weapon.clear();
-			atlas_weapon.load("weapon_fork_%d", 8);
+			//请继续建设
 		}
 
 		void init_body() override
 		{
-			atlas_body.clear();
-			atlas_body.load("white_chicken_%d", 8);
+			//请继续建设
 		}
 
 		void init_hat() override
 		{
-			atlas_hat.clear();
-			atlas_hat.load("crown_%d", 8);
+			//请继续建设
 		}
 
+        //将以上选择的物品的图集传给鸡类中的对应建造函数，实例化渲染他们
+        （记得返回鸡的信息回去）
 		Chicken* build() override
 		{
 			Chicken* chicken = new Chicken();
-
-			chicken->set_weapon(&atlas_weapon);
-			chicken->set_body(&atlas_body);
-			chicken->set_hat(&atlas_hat);
-
-			return chicken;
+            //请继续建设
+			
 		}
 
 	};
 
+    //预设绿帽吮指原味鸡lol，跟伊丽莎白鸡一样
 	class GreenHatOriginalRecipeChickenBuilder : public Builder
 	{
 	public:
 		void init_weapon() override
 		{
-			atlas_weapon.clear();
-			atlas_weapon.load("weapon_plate_%d", 8);
+			//请继续建设
 		}
 
 		void init_body() override
 		{
-			atlas_body.clear();
-			atlas_body.load("brown_chicken_%d", 8);
+			//请继续建设
 		}
 
 		void init_hat() override
 		{
-			atlas_hat.clear();
-			atlas_hat.load("green_hat_%d", 8);
+			//请继续建设
 		}
 
 		Chicken* build() override
 		{
 			Chicken* chicken = new Chicken();
-
-			chicken->set_weapon(&atlas_weapon);
-			chicken->set_body(&atlas_body);
-			chicken->set_hat(&atlas_hat);
-
-			return chicken;
+            //请继续建设
+			
 		}
 
 	};
-
+    //自定义外观不传入或设置任何物品
 	class CustomChickenBuilder : public Builder
 	{
 	public:
-		void init_weapon() override;
-		void init_body() override;
-		void init_hat() override;
-		Chicken* build() override;
+		//请继续建设
 
 	};
 }
 
+//建造模式接口
 class BuilderPattern : public Example
 {
 public:
@@ -169,6 +151,7 @@ public:
 private:
 	SDL_Texture* texture_target = nullptr;
 	_BuilderPattern::Chicken* chicken = nullptr;
+    //设置三个实现类的实例分别是伊丽莎白鸡跟绿帽鸡以及自定义的预设暴露给管理器
 	_BuilderPattern::CustomChickenBuilder custom_chicken_builder;
 	_BuilderPattern::ElizabethChickenBuilder elizabeth_chicken_builder;
 	_BuilderPattern::GreenHatOriginalRecipeChickenBuilder green_hat_original_recipe_chicken_builder;
