@@ -1,0 +1,107 @@
+《在于复制原有的个体到屏幕中》
+#ifndef _PROTOTYPE_H_
+#define _PROTOTYPE_H_
+
+#include "example.h"
+#include "animation.h"
+
+namespace _PrototypePattern
+{
+
+ //创造一个原型基类为所有后续有克隆功能的子类提供接口
+	class Prototype
+	{
+	public:
+    //提供一个克隆接口（注意后续的多态性）
+		
+
+	};
+  //构造鸡类，如果该对象需要克隆更多需要继承接口
+	class Chicken : public Prototype
+	{
+	public:
+		Chicken()
+		{
+			//老三样开始构造三个部位的动画循环跟动画帧播放
+
+      //设置老三样的位置生成信息，需要*随机*分布屏幕的不同处
+      //使用随机数语法为（类型）（rand（）% 范围）665 x 590
+		}
+
+		~Chicken() = default;
+
+    //设置武器动画图集
+		void set_weapon(Atlas* atlas)
+		{
+      //保证克隆的多样性
+      //将图片集加入给动画器
+			
+		}
+
+		void set_body(Atlas* atlas)
+		{
+		  //保证克隆的多样性
+      //将图片集加入给动画器
+		}
+
+		void set_hat(Atlas* atlas)
+		{
+			//保证克隆的多样性
+      //将图片集加入给动画器
+		}
+
+		void on_update(float delta)
+		{
+			//老三样更新
+		}
+
+		void on_render(SDL_Renderer* renderer)
+		{
+			//老三样渲染
+		}
+    //克隆一只鸡
+		Chicken* clone() const override
+		{
+      //创建一只新鸡
+			
+
+      //已经设置好的三个部位给这只新鸡
+			
+      //把配置好的鸡的信息返回给克隆
+			
+		}
+
+	private:
+		//动画设置老三样，但是每样要多加上Atlas集设置，因为将会有多个对象所以使用指针更安全多态。
+		Animation animation_weapon;
+		Animation animation_body;
+		Animation animation_hat;
+
+	};
+}
+//原型模式接口
+class PrototypePattern : public Example
+{
+public:
+	PrototypePattern(SDL_Renderer* renderer);
+	~PrototypePattern();
+
+  //进入跟退出逻辑 清屏
+	void on_enter() override;
+	void on_exit() override;
+
+	void on_update(float delta) override;
+	void on_render(SDL_Renderer* renderer) override;
+
+private:
+	SDL_Texture* texture_target = nullptr;
+  //创建一个vec容器储存所有克隆出来的鸡chicken_list
+  //创建鸡的原型prototype_chicken
+  //将所有部位都指向Atlas在源码中统一指向各自的图片集
+	Atlas atlas_weapon_fork, atlas_weapon_plate, atlas_weapon_spoon;
+	Atlas atlas_body_brown, atlas_body_red, atlas_body_white;
+	Atlas atlas_hat_crown, atlas_hat_green, atlas_hat_straw;
+
+};
+
+#endif // !_PROTOTYPE_H_
