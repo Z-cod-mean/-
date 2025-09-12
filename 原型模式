@@ -33,21 +33,18 @@ namespace _PrototypePattern
     //设置武器动画图集
 		void set_weapon(Atlas* atlas)
 		{
-      //保证克隆的多样性
-      //将图片集加入给动画器
+        //将参数传入给对应的封装参数
 			
 		}
 
 		void set_body(Atlas* atlas)
 		{
-		  //保证克隆的多样性
-      //将图片集加入给动画器
+		   //将参数传入给对应的封装参数
 		}
 
 		void set_hat(Atlas* atlas)
 		{
-			//保证克隆的多样性
-      //将图片集加入给动画器
+			 //将参数传入给对应的封装参数
 		}
 
 		void on_update(float delta)
